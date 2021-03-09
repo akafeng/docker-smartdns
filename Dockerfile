@@ -7,14 +7,17 @@ ARG SMARTDNS_URL="https://github.com/pymumu/smartdns/releases/download/$SMARTDNS
 ARG SMARTDNS_CONF="https://raw.githubusercontent.com/pymumu/smartdns/$SMARTDNS_VERSION/etc/smartdns/smartdns.conf"
 
 RUN set -eux \
-    && wget "$SMARTDNS_URL" \
-    && mv smartdns-x86_64 /usr/sbin/smartdns \
-    && chmod +x /usr/sbin/smartdns \
-    \
-    && mkdir /etc/smartdns/ \
-    && wget "$SMARTDNS_CONF" \
-    && mv smartdns.conf /etc/smartdns/smartdns.conf \
-    && ln -sf /dev/stderr /var/log/smartdns.log
+  && apk add --no-cache \
+    tzdata \
+  \
+  && wget "$SMARTDNS_URL" \
+  && mv smartdns-x86_64 /usr/sbin/smartdns \
+  && chmod +x /usr/sbin/smartdns \
+  \
+  && mkdir /etc/smartdns/ \
+  && wget "$SMARTDNS_CONF" \
+  && mv smartdns.conf /etc/smartdns/smartdns.conf \
+  && ln -sf /dev/stderr /var/log/smartdns.log
 
 EXPOSE 53/udp
 CMD ["smartdns", "-f", "-c", "/etc/smartdns/smartdns.conf"]
