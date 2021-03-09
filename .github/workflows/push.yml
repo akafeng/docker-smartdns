@@ -34,4 +34,6 @@ jobs:
             .
 
       - name: Docker Publish
-        run: docker push ${{ env.GITHUB_PACKAGE_REGISTRY }}/${{ github.repository }}/${{ env.REPOSITORY }}
+        env:
+          STAGE_CACHE: ${{ env.GITHUB_PACKAGE_REGISTRY }}/${{ github.repository }}/${{ env.REPOSITORY }}:stage
+        run: docker push ${{ env.STAGE_CACHE }}
