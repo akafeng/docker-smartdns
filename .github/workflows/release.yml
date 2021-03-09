@@ -37,4 +37,4 @@ jobs:
             .
 
       - name: Docker Publish
-        run: docker push ${{ env.USERNAME }}/${{ env.REPOSITORY }}
+        run: docker push --all-tags ${{ env.USERNAME }}/${{ env.REPOSITORY }}
