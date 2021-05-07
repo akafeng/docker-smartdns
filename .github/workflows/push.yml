@@ -27,9 +27,7 @@ jobs:
         env:
           STAGE_CACHE: ${{ env.GITHUB_PACKAGE_REGISTRY }}/${{ github.repository }}/${{ env.REPOSITORY }}:stage
         run: |
-          docker pull ${{ env.STAGE_CACHE }} || true
           docker build \
-            --cache-from=${{ env.STAGE_CACHE }} \
             --tag=${{ env.STAGE_CACHE }} \
             .
 
