@@ -26,14 +26,14 @@ jobs:
       - name: Docker Build
         env:
           STAGE_CACHE: ${{ env.GITHUB_PACKAGE_REGISTRY }}/${{ github.repository }}/${{ env.REPOSITORY }}:stage
-          LATEST_TAG: ${{ env.USERNAME }}/${{ env.REPOSITORY }}:latest
           VERSION_TAG: ${{ env.USERNAME }}/${{ env.REPOSITORY }}:${{ github.event.release.tag_name }}
+          LATEST_TAG: ${{ env.USERNAME }}/${{ env.REPOSITORY }}:latest
         run: |
           docker pull ${{ env.STAGE_CACHE }} || true
           docker build \
             --cache-from=${{ env.STAGE_CACHE }} \
-            --tag=${{ env.LATEST_TAG }} \
             --tag=${{ env.VERSION_TAG }} \
+            --tag=${{ env.LATEST_TAG }} \
             .
 
       - name: Docker Publish

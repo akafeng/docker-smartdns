@@ -32,4 +32,4 @@ jobs:
             .
 
       - name: Docker Publish
-        run: docker push --all-tags ${{ env.STAGE_CACHE }}
+        run: docker push --all-tags ${{ env.GITHUB_PACKAGE_REGISTRY }}/${{ github.repository }}/${{ env.REPOSITORY }}
