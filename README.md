@@ -4,6 +4,8 @@
 
 <h1 align="center">SmartDNS</h1>
 
+<p align="center">A local DNS server to obtain the fastest website IP for the best Internet experience.</p>
+
 <p align="center">
     <a href="https://hub.docker.com/r/akafeng/smartdns">Docker Hub</a> ·
     <a href="https://github.com/pymumu/smartdns">Project Source</a>
@@ -29,7 +31,7 @@ $ docker pull akafeng/smartdns
 ```bash
 $ docker run -d \
   -p 53:53/udp \
-  -v /etc/smartdns/smartdns.conf:/etc/smartdns/smartdns.conf \
+  -v /etc/smartdns/:/etc/smartdns/ \
   --restart always \
   --name=smartdns \
   akafeng/smartdns

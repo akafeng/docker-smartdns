@@ -15,9 +15,9 @@ RUN set -eux \
   \
   && mkdir /etc/smartdns/ \
   && wget ${SMARTDNS_CONF} \
-  && mv smartdns.conf /etc/smartdns/smartdns.conf \
+  && mv smartdns.conf /etc/smartdns/config.conf \
   && ln -s /dev/stderr /var/log/smartdns.log
 
 EXPOSE 53/udp
 
-CMD ["smartdns", "-f", "-c", "/etc/smartdns/smartdns.conf", "-p", "/tmp/smartdns.pid"]
+CMD ["smartdns", "-f", "-c", "/etc/smartdns/config.conf", "-p", "/tmp/smartdns.pid"]
