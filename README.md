@@ -14,7 +14,6 @@
 <p align="center">
     <img src="https://img.shields.io/docker/v/akafeng/smartdns?sort=semver" />
     <img src="https://img.shields.io/docker/pulls/akafeng/smartdns" />
-    <img src="https://img.shields.io/microbadger/layers/akafeng/smartdns" />
     <img src="https://img.shields.io/docker/image-size/akafeng/smartdns??sort=semver" />
 </p>
 

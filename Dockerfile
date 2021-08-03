@@ -1,6 +1,9 @@
 FROM alpine:3.12
 
-LABEL maintainer="akafeng <i@sjy.im>"
+LABEL \
+    org.opencontainers.image.title="smartdns" \
+    org.opencontainers.image.authors="akafeng <i@sjy.im>" \
+    org.opencontainers.image.source="https://github.com/akafeng/docker-smartdns"
 
 ARG SMARTDNS_VERSION="Release33"
 ARG SMARTDNS_URL="https://github.com/pymumu/smartdns/releases/download/${SMARTDNS_VERSION}/smartdns-x86_64"
@@ -14,10 +17,10 @@ RUN set -eux \
   && chmod +x /usr/local/bin/smartdns \
   \
   && mkdir /etc/smartdns/ \
-  && wget ${SMARTDNS_CONF} \
-  && mv smartdns.conf /etc/smartdns/config.conf \
+  && wget -O /etc/smartdns/config.conf ${SMARTDNS_CONF} \
   && ln -s /dev/stderr /var/log/smartdns.log
 
 EXPOSE 53/udp
 
-CMD ["smartdns", "-f", "-c", "/etc/smartdns/config.conf", "-p", "/tmp/smartdns.pid"]
+ENTRYPOINT ["/usr/local/bin/smartdns"]
+CMD ["-f", "-c", "/etc/smartdns/config.conf", "-p", "/tmp/smartdns.pid"]
