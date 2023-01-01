@@ -7,14 +7,15 @@
 <p align="center">A local DNS server to obtain the fastest website IP for the best Internet experience.</p>
 
 <p align="center">
-    <a href="https://hub.docker.com/r/akafeng/smartdns">Docker Hub</a> ·
+    <a href="https://ghcr.io/akafeng/smartdns">Container Registry</a> ·
     <a href="https://github.com/pymumu/smartdns">Project Source</a>
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/docker/v/akafeng/smartdns?sort=semver" />
-    <img src="https://img.shields.io/docker/pulls/akafeng/smartdns" />
-    <img src="https://img.shields.io/docker/image-size/akafeng/smartdns??sort=semver" />
+    <img src="https://img.shields.io/github/actions/workflow/status/akafeng/docker-smartdns/push.yml?branch=main" />
+    <img src="https://img.shields.io/github/last-commit/akafeng/docker-smartdns" />
+    <img src="https://img.shields.io/github/v/release/akafeng/docker-smartdns" />
+    <img src="https://img.shields.io/github/release-date/akafeng/docker-smartdns" />
 </p>
 
 ---
@@ -22,7 +23,7 @@
 ### Pull The Image
 
 ```bash
-$ docker pull akafeng/smartdns
+$ docker pull ghcr.io/akafeng/smartdns
 ```
 
 ### Start Container
@@ -31,7 +32,7 @@ $ docker pull akafeng/smartdns
 $ docker run -d \
   -p 53:53/udp \
   -v /etc/smartdns/:/etc/smartdns/ \
-  --restart always \
+  --restart=always \
   --name=smartdns \
-  akafeng/smartdns
+  ghcr.io/akafeng/smartdns
 ```
