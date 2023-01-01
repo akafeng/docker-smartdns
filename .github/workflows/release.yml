@@ -32,7 +32,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.PACKAGE_REGISTRY }}/${{ github.repository_owner }}/${{ env.REPOSITORY }}
-          tags: type=semver, pattern={{version}}
+          tags: type=ref, event=tag
 
       - name: Build and push
         uses: docker/build-push-action@v3
