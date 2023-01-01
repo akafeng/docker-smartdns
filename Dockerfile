@@ -12,7 +12,19 @@ RUN set -eux \
     && rm -rf /var/lib/apt/lists/* /var/log/* \
     \
     && ARCH=`uname -m` \
-    && wget -O /usr/local/bin/smartdns "${SMARTDNS_URL}smartdns-${ARCH}" \
+    && case "$ARCH" in \
+            "x86_64") \
+                SMARTDNS_FILENAME="smartdns-x86_64" \
+                ;; \
+            "aarch64") \
+                SMARTDNS_FILENAME="smartdns-aarch64" \
+                ;; \
+            "armv7l") \
+                SMARTDNS_FILENAME="smartdns-arm" \
+                ;; \
+        esac \
+    \
+    && wget -O /usr/local/bin/smartdns "${SMARTDNS_URL}${SMARTDNS_FILENAME}" \
     && chmod +x /usr/local/bin/smartdns \
     \
     && mkdir /etc/smartdns/ \
