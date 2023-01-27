@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/pymumu/smartdns/master/doc/smartdns.png" width="150" />
+    <img src="https://github.com/pymumu/smartdns/raw/master/doc/smartdns.png" width="150" />
 </p>
 
 <h1 align="center">SmartDNS</h1>
