@@ -1,8 +1,8 @@
-FROM debian:bullseye-slim AS builder
+FROM debian:bullseye-slim
 
-ARG SMARTDNS_VERSION="Release40"
+ARG SMARTDNS_VERSION="Release41"
 ARG SMARTDNS_URL="https://github.com/pymumu/smartdns/releases/download/${SMARTDNS_VERSION}/"
-ARG SMARTDNS_CONF="https://github.com/pymumu/smartdns/raw/master/etc/smartdns/smartdns.conf"
+ARG SMARTDNS_CONF="https://github.com/pymumu/smartdns/raw/${SMARTDNS_VERSION}/etc/smartdns/smartdns.conf"
 
 RUN set -eux \
     && apt-get update -qyy \
@@ -19,18 +19,15 @@ RUN set -eux \
             "aarch64") \
                 SMARTDNS_FILENAME="smartdns-aarch64" \
                 ;; \
-            "armv7l") \
-                SMARTDNS_FILENAME="smartdns-arm" \
-                ;; \
         esac \
     \
     && wget -O /usr/local/bin/smartdns "${SMARTDNS_URL}${SMARTDNS_FILENAME}" \
     && chmod +x /usr/local/bin/smartdns \
     \
     && mkdir /etc/smartdns/ \
-    && wget -O /etc/smartdns/config.conf "${SMARTDNS_CONF}"
+    && wget -O /etc/smartdns/smartdns.conf "${SMARTDNS_CONF}"
 
 EXPOSE 53/udp
 
 ENTRYPOINT ["/usr/local/bin/smartdns"]
-CMD ["-f", "-c", "/etc/smartdns/config.conf", "-p", "/tmp/smartdns.pid"]
+CMD ["-f", "-c", "/etc/smartdns/smartdns.conf", "-p", "/tmp/smartdns.pid"]
