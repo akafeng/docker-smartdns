@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-ARG SMARTDNS_VERSION="Release42"
+ARG SMARTDNS_VERSION="Release43"
 ARG SMARTDNS_URL="https://github.com/pymumu/smartdns/releases/download/${SMARTDNS_VERSION}/"
 ARG SMARTDNS_CONF="https://github.com/pymumu/smartdns/raw/${SMARTDNS_VERSION}/etc/smartdns/smartdns.conf"
 
