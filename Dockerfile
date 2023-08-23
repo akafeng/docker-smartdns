@@ -9,6 +9,7 @@ RUN set -eux \
     && apt-get install -qyy --no-install-recommends --no-install-suggests \
         ca-certificates \
         wget \
+        libcap2-bin \
     && rm -rf /var/lib/apt/lists/* /var/log/* \
     \
     && ARCH=`uname -m` \
@@ -23,6 +24,7 @@ RUN set -eux \
     \
     && wget -O /usr/local/bin/smartdns "${SMARTDNS_URL}${SMARTDNS_FILENAME}" \
     && chmod +x /usr/local/bin/smartdns \
+    && setcap CAP_NET_BIND_SERVICE,CAP_NET_RAW=+eip /usr/local/bin/smartdns \
     \
     && mkdir /etc/smartdns/ \
     && wget -O /etc/smartdns/smartdns.conf "${SMARTDNS_CONF}"
